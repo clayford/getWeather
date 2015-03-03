@@ -15,9 +15,16 @@ if(length(tmp) <=2 ) stop("no data; pick another date")
   
   write(tmp, file = "wea.csv")
   
-  read.csv("wea.csv", row.names = NULL)
-  
+  dat <- read.csv("wea.csv", row.names = NULL)
+  op <- par(mfrow=c(1,3))
+plot(dat$TemperatureF, type="l")
+plot(dat$DewpointF, type="l")
+plot(dat$PressureIn, type="l")
+cat("max Temp:",max(dat$TemperatureF),"\n")
+cat("min Temp:",min(dat$TemperatureF),"\n")
+
 }
 
 # test
-dat <- getWeather(ID="KVACHARL30", day="5",month="11",year="2014")
+getWeather(ID="KVACHARL30", day="9",month="11",year="2014")
+
